@@ -1,0 +1,29 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+button {
+   border-width: 0;
+   background-color: transparent;
+}
+
+input, textarea, select {
+   font: inherit;
+}
+
+svg {
+   flex-shrink: 0;
+   max-width: 100%;
+}
+
+.container {
+   margin: 0 auto;
+}
+
+@media (min-width: 1280px) {  
+   .container {
+      max-width: 1440px !important;
+   }
+}
