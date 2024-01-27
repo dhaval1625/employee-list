@@ -9,7 +9,7 @@ export default {
          transparent: 'transparent',
          current: 'currentColor',
          white: {
-            DEFAULT:'#ffffff',
+            DEFAULT: '#ffffff',
             100: '#eff0f6',
          },
          gray: {
@@ -18,42 +18,43 @@ export default {
             200: '#D9DBE9',
          },
          dark: {
-            DEFAULT: '#170F49'
+            DEFAULT: '#170F49',
          },
          black: {
-            DEFAULT: '#000'
+            DEFAULT: '#000',
          },
          primary: {
             DEFAULT: '#4A3AFF',
             100: '#F3F1FF',
-            400: '#675ce2'
+            400: '#675ce2',
          },
          danger: {
-            DEFAULT: '#ff3333'
-         }
+            DEFAULT: '#ff3333',
+         },
       },
       spacing: {
          0: '0px',
-         1: '2px',
-         2: '4px',
-         3: '8px',
-         3.5: '10px',
-         4: '12px',
-         5: '16px',
-         5.5: '20px',
-         6: '24px',
-         6.5: '30px',
-         7: '32px',
-         8: '40px',
-         9: '60px',
-         10: '80px',
+         1: '0.125rem',
+         2: '0.25rem',
+         3: '0.5rem',
+         3.5: '0.625rem',
+         4: '0.75rem',
+         5: '1rem',
+         5.5: '1.25rem',
+         6: '1.5rem',
+         6.5: '1.875rem',
+         7: '2rem',
+         8: '2.5rem',
+         9: '3.75rem',
+         10: '5rem',
+         11: '6.25rem',
       },
       fontSize: {
-         sm: '16px',
-         base: '18px',
-         xl: '24px',
-         '2xl': '34px',
-         '3xl': '50px',
+         sm: '1rem', 
+         base: '1.125rem', 
+         xl: '1.5rem', 
+         '2xl': '2.125rem', 
+         '3xl': '3.125rem',
       },
       extend: {},
    },

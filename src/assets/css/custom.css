@@ -16,6 +16,20 @@
    box-shadow: 0px 5px 16px 0px rgba(8, 15, 52, 0.06);
 }
 
+.rdt_Table {
+   border: 1px solid #80808045;
+   border-radius: 10px;
+   overflow: hidden;
+}
+
+nav.rdt_Pagination {
+   border: none;
+}
+
+.rdt_TableHeadRow {
+   font-size: 1.25rem;
+}
+
 @media screen and (max-width: 370px) {
    .heading-brand {
       font-size: 18px !important;

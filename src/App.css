@@ -16,6 +16,7 @@ input, textarea, select {
 svg {
    flex-shrink: 0;
    max-width: 100%;
+   height: auto;
 }
 
 .container {
@@ -25,5 +26,11 @@ svg {
 @media (min-width: 1280px) {  
    .container {
       max-width: 1440px !important;
+   }
+}
+
+@media screen and (max-height: 750px) {
+   html {
+      font-size: 75%;
    }
 }

@@ -3,6 +3,7 @@ import './assets/css/custom.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import MultiStepForm from './pages/MultiStepForm';
+import EmployeeList from './pages/EmployeeList';
 
 const router = createBrowserRouter([
    {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
    {
       path: '/employee/add',
       element: <MultiStepForm />,
+   },
+   {
+      path: '/employee/list',
+      element: <EmployeeList />,
    },
 ]);
 

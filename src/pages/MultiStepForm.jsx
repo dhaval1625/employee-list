@@ -28,12 +28,12 @@ function MultiStepForm() {
    return (
       <AppLayout>
          <Container>
-            <div className='mx-auto max-w-[700px] space-y-7'>
+            <div className='mx-auto max-w-[43.75rem] space-y-7'>
 
                {/* form heading and description */}
                <div className='space-y-4 text-center'>
                   <HeadingLarge>Get a project quote</HeadingLarge>
-                  <TextPrimary className="max-w-[566px] mx-auto">Please fill the form below to receive a quote for your project. Feel free to add as much detail as needed.</TextPrimary>
+                  <TextPrimary className="max-w-[35.375rem] mx-auto">Please fill the form below to receive a quote for your project. Feel free to add as much detail as needed.</TextPrimary>
                </div>
 
                {/* main form container */}

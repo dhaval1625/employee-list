@@ -1,10 +1,13 @@
 import React from 'react';
 
 function StepNumbers({ totalSteps, currentStep }) {
+
+   const numsArr = Array.from({ length: totalSteps }, (_, i) => i + 1);
+
    return (
       <div className="pb-6.5 border-b border-gray-200">
-         <div className="flex items-center space-x-5">
-            {Array.from({ length: totalSteps }, (_, i) => i + 1).map((num, idx) => (
+         <div className="flex items-center space-x-3 md:space-x-5">
+            {numsArr.map((num, idx) => (
                <React.Fragment key={num}>
                   <div className={`step-num ${num <= currentStep ? 'filled' : ''}`}>{num}</div>
                   {num !== totalSteps && (

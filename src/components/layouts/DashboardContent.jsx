@@ -9,7 +9,7 @@ function DashboardContent() {
    return (
       <div className="md:mt-8 mt-5 relative">
          <Container>
-            <div className="text-center max-w-[680px] mx-auto">
+            <div className="text-center max-w-[42.5rem] mx-auto">
                <div className="space-y-4 mb-8">
                   <TextSmall className="text-primary tracking-[3.84px] uppercase font-medium">
                      Cloneables FOR WEBFLOW
@@ -21,7 +21,7 @@ function DashboardContent() {
                   </TextPrimary>
                </div>
                <form className="space-y-6">
-                  <div className="input-block max-w-[600px] relative mx-auto">
+                  <div className="input-block max-w-[37.5rem] relative mx-auto">
                      <input
                         className="form-input "
                         placeholder="Enter your email"

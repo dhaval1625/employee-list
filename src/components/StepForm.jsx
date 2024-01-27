@@ -1,14 +1,18 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import HeadingMedium from './typography/HeadingMedium';
 import TextPrimary from './typography/TextPrimary';
 import TextSmall from './typography/TextSmall';
 import { STEP_DETAILS } from '../config';
 import LastStepContent from './layouts/LastStepContent';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { employeeActions } from '../store/index';
+import { useNavigate } from 'react-router';
 
 function StepForm({ currentStep, submitRef, onValid }) {
    const curForm = STEP_DETAILS[currentStep - 1] || null;
-   const formEl = useRef(null);
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
 
    const {
       register,
@@ -23,7 +27,8 @@ function StepForm({ currentStep, submitRef, onValid }) {
 
    function finalSubmitHandler() {
       const data = getValues();
-      onValid(data);
+      dispatch(employeeActions.addMember(data));
+      navigate('/employee/list');
    }
 
    // helper function to render form group of current step
@@ -46,7 +51,7 @@ function StepForm({ currentStep, submitRef, onValid }) {
                         className="form-input"
                         placeholder={element.placeholder}
                      />
-                     <div className="absolute top-1/2 -translate-y-1/2 right-5.5 max-w-5.5">
+                     <div className="absolute top-1/2 -translate-y-1/2 right-5.5 max-w-4 md:max-w-5.5">
                         <element.inputIcon />
                      </div>
                   </div>
@@ -70,7 +75,9 @@ function StepForm({ currentStep, submitRef, onValid }) {
                      htmlFor={element.id}
                   >
                      {element.inputIcon !== undefined ? (
-                        <element.inputIcon />
+                        <div className='flex md:max-w-none max-w-9'>
+                           <element.inputIcon />
+                        </div>
                      ) : (
                         <div className="radio-circle"></div>
                      )}
@@ -93,8 +100,7 @@ function StepForm({ currentStep, submitRef, onValid }) {
                </div>
                <form
                   onSubmit={handleSubmit(submitHandler)}
-                  ref={formEl}
-                  className="grid grid-cols-2 gap-x-6 gap-y-7"
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-x-6 md:gap-y-7"
                >
                   {curForm.formElements.map((element, idx) => (
                      <React.Fragment key={element.id}>{RenderFormGroup(element)}</React.Fragment>

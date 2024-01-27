@@ -35,9 +35,8 @@ body {
 }
 
 .form-radio {
-   @apply cursor-pointer md:p-6 p-4 flex items-center space-x-4 rounded-2xl border-2 border-white-100;
+   @apply cursor-pointer md:p-6 p-4 flex items-center space-x-4 rounded-2xl border-2 border-white-100 min-h-[4rem] md:min-h-[7.3rem];
    box-shadow: 0px 2px 6px 0px rgba(19, 18, 66, 0.07);
-   min-height: 119px;
 }
 
 input:checked + .form-radio {
@@ -50,7 +49,7 @@ input:checked + .form-radio {
 }
 
 input:checked + .form-radio .radio-circle {
-   @apply border-[7px] border-primary
+   @apply border-[7px] border-primary;
 }
 
 .step-num {

@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 function AppFooter() {
    return (
-      <div className="fixed py-5 w-full bg-white z-10 bottom-0 left-0 app-footer">
+      <div className="fixed py-5 w-full bg-white z-10 bottom-0 left-0 app-footer md:block hidden">
          <Container>
             <div className="flex items-center justify-between">
                <NavLink to="/">
@@ -17,7 +17,7 @@ function AppFooter() {
                      Copyright © 2021 Aimbrill Techinfo | All Rights Reserved
                   </TextPrimary>
                </NavLink>
-               <form className="input-block grow max-w-[500px] relative">
+               <form className="input-block grow max-w-[31.25rem] relative">
                   <input
                      className="form-input "
                      placeholder="Enter your email"

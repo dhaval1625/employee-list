@@ -5,6 +5,8 @@ import Container from '../ui/Container';
 import React from 'react';
 
 function AppHeader() {
+   const curPath = window.location.pathname;
+   console.log(curPath);
    return (
       <div className="fixed py-5 w-full bg-white z-10 top-0 left-0 app-header">
          <Container>
@@ -14,7 +16,21 @@ function AppHeader() {
                      Aimbrill Techinfo
                   </HeadingLarge>
                </NavLink>
-               <Button>Employee List</Button>
+               {curPath.includes('list') ? (
+                  <Button
+                     isLink
+                     linkPath="/employee/add"
+                  >
+                     Add Employee
+                  </Button>
+               ) : (
+                  <Button
+                     isLink
+                     linkPath="/employee/list"
+                  >
+                     Employee List
+                  </Button>
+               )}
             </div>
          </Container>
       </div>
