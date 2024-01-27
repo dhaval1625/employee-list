@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import AppLayout from '../components/ui/AppLayout';
 import AppFooter from '../components/layouts/AppFooter';
 import Container from '../components/ui/Container';
@@ -14,7 +14,14 @@ function MultiStepForm() {
 
    const [currentStep, setCurrentStep] = useState(1);
 
+   const submitRef = useRef(null);
+
    function nextStepHandler() {
+      submitRef.current.click();
+   }
+   
+   function executeOnValid(data) {
+      console.log(data);
       setCurrentStep(prev => prev + 1);
    }
 
@@ -32,13 +39,13 @@ function MultiStepForm() {
                {/* main form container */}
                <div className='stepper-form-box space-y-7 border border-white-100 pt-7 px-8 pb-8'>
                   <StepNumbers totalSteps={TOTAL_STEPS} currentStep={currentStep} />
-                  <StepForm currentStep={currentStep} />
+                  <StepForm onValid={executeOnValid} submitRef={submitRef} currentStep={currentStep} />
                </div>
 
                {/* nav buttons */}
                <div className='flex items-center justify-between'>
-                  <ButtonOutline onClick={() => setCurrentStep(prev => prev - 1)}>Previous step</ButtonOutline>
-                  <Button onClick={nextStepHandler}>Next step</Button>
+                  {currentStep > 1 ? <ButtonOutline onClick={() => setCurrentStep(prev => prev - 1)}>Previous step</ButtonOutline> : <div></div>}
+                  {currentStep < TOTAL_STEPS ? <Button onClick={nextStepHandler}>Next step</Button> : <div></div>}
                </div>
             </div>
          </Container>

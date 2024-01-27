@@ -1,11 +1,14 @@
-import UserIcon from "./components/icons/User";
-import EmailIcon from "./components/icons/Email";
-import PhoneIcon from "./components/icons/Phone";
-import CompanyIcon from "./components/icons/Company";
-import DevelopmentIcon from "./components/icons/Development";
-import DesignIcon from "./components/icons/Design";
-import MarketingIcon from "./components/icons/Marketing";
-import OtherIcon from "./components/icons/Other";
+import UserIcon from './components/icons/User';
+import EmailIcon from './components/icons/Email';
+import PhoneIcon from './components/icons/Phone';
+import CompanyIcon from './components/icons/Company';
+import DevelopmentIcon from './components/icons/Development';
+import DesignIcon from './components/icons/Design';
+import MarketingIcon from './components/icons/Marketing';
+import OtherIcon from './components/icons/Other';
+
+const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const phoneRegex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
 
 export const STEP_DETAILS = [
    {
@@ -33,17 +36,19 @@ export const STEP_DETAILS = [
             isRequired: true,
             errorMessage: 'Please enter a valid email!',
             groupType: 'withLabel',
+            validationCriteria: { pattern: emailRegex },
          },
          {
             id: 'contact-f3',
             name: 'phoneNumber',
             label: 'Phone Number',
-            inputType: 'number',
+            inputType: 'tel',
             placeholder: '(123) 456 - 7890',
             inputIcon: PhoneIcon,
             isRequired: true,
-            errorMessage: 'Phone Number is Required!',
+            errorMessage: 'Please enter a valid phone number eg. (123) 456 - 7890!',
             groupType: 'withLabel',
+            validationCriteria: { minLength: 10, pattern: phoneRegex },
          },
          {
             id: 'contact-f4',
@@ -56,11 +61,14 @@ export const STEP_DETAILS = [
             errorMessage: 'Company is Required!',
             groupType: 'withLabel',
          },
-      ]
+      ],
    },
    {
       title: 'Our services',
       desc: 'Please select which service you are interested in.',
+      groupValidation: true,
+      groupName: 'service',
+      groupErrorMessage: 'Please select a service!',
       formElements: [
          {
             id: 'service-f1',
@@ -69,7 +77,7 @@ export const STEP_DETAILS = [
             inputType: 'radio',
             inputIcon: DevelopmentIcon,
             groupType: 'radio',
-            isChecked: true,
+            isRequired: true,
          },
          {
             id: 'service-f2',
@@ -78,6 +86,7 @@ export const STEP_DETAILS = [
             inputType: 'radio',
             inputIcon: DesignIcon,
             groupType: 'radio',
+            isRequired: true,
          },
          {
             id: 'service-f3',
@@ -86,6 +95,7 @@ export const STEP_DETAILS = [
             inputType: 'radio',
             inputIcon: MarketingIcon,
             groupType: 'radio',
+            isRequired: true,
          },
          {
             id: 'service-f4',
@@ -94,12 +104,16 @@ export const STEP_DETAILS = [
             inputType: 'radio',
             inputIcon: OtherIcon,
             groupType: 'radio',
+            isRequired: true,
          },
-      ]
+      ],
    },
    {
-      title: 'What\'s your project budget?',
+      title: "What's your project budget?",
       desc: 'Please select the project budget range you have in mind.',
+      groupValidation: true,
+      groupName: 'budget',
+      groupErrorMessage: 'Please select a service!',
       formElements: [
          {
             id: 'budget-f1',
@@ -107,7 +121,7 @@ export const STEP_DETAILS = [
             label: '$5.000 - $10.000',
             inputType: 'radio',
             groupType: 'radio',
-            isChecked: true,
+            isRequired: true,
          },
          {
             id: 'budget-f2',
@@ -115,6 +129,7 @@ export const STEP_DETAILS = [
             label: '$10.000 - $20.000',
             inputType: 'radio',
             groupType: 'radio',
+            isRequired: true,
          },
          {
             id: 'budget-f3',
@@ -122,6 +137,7 @@ export const STEP_DETAILS = [
             label: '$20.000 - $50.000',
             inputType: 'radio',
             groupType: 'radio',
+            isRequired: true,
          },
          {
             id: 'budget-f4',
@@ -129,11 +145,19 @@ export const STEP_DETAILS = [
             label: '$50.000 +',
             inputType: 'radio',
             groupType: 'radio',
+            isRequired: true,
          },
-      ]
+      ],
    },
-
-
-]
+];
 
 export const TOTAL_STEPS = STEP_DETAILS.length + 1;
+
+export const TITLE_ENUM = {
+   name: 'Name',
+   email: 'Email',
+   phoneNumber: 'Phone Number',
+   company: 'Company Name',
+   service: 'Service',
+   budget: 'Budget',
+};

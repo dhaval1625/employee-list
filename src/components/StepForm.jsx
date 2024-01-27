@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import HeadingMedium from './typography/HeadingMedium';
 import TextPrimary from './typography/TextPrimary';
 import TextSmall from './typography/TextSmall';
 import { STEP_DETAILS } from '../config';
 import LastStepContent from './layouts/LastStepContent';
+import { useForm } from 'react-hook-form';
 
-function StepForm({ currentStep }) {
+function StepForm({ currentStep, submitRef, onValid }) {
    const curForm = STEP_DETAILS[currentStep - 1] || null;
+   const formEl = useRef(null);
 
-   // helper component to render form group of current step
-   function RenderFormGroup({ element }) {
+   const {
+      register,
+      handleSubmit,
+      getValues,
+      formState: { errors },
+   } = useForm();
+
+   function submitHandler(data) {
+      onValid(data);
+   }
+
+   function finalSubmitHandler() {
+      const data = getValues();
+      onValid(data);
+   }
+
+   // helper function to render form group of current step
+   function RenderFormGroup(element) {
       switch (element.groupType) {
          case 'withLabel':
             return (
@@ -19,8 +37,11 @@ function StepForm({ currentStep }) {
                   </label>
                   <div className="relative">
                      <input
+                        {...register(element.name, {
+                           required: element.isRequired,
+                           ...element.validationCriteria,
+                        })}
                         type={element.inputType}
-                        name={element.name}
                         id={element.id}
                         className="form-input"
                         placeholder={element.placeholder}
@@ -29,7 +50,9 @@ function StepForm({ currentStep }) {
                         <element.inputIcon />
                      </div>
                   </div>
-                  <TextSmall className="text-danger">{element.errorMessage}</TextSmall>
+                  {errors[element.name] && (
+                     <TextSmall className="text-danger">{element.errorMessage}</TextSmall>
+                  )}
                </div>
             );
          case 'radio':
@@ -37,11 +60,10 @@ function StepForm({ currentStep }) {
                <div>
                   <input
                      type={element.inputType}
-                     name={element.name}
+                     {...register(element.name, { required: element.isRequired })}
                      id={element.id}
                      hidden
                      value={element.label}
-                     defaultChecked={element.isChecked}
                   />
                   <label
                      className="form-radio"
@@ -69,17 +91,31 @@ function StepForm({ currentStep }) {
                   <HeadingMedium>{curForm.title}</HeadingMedium>
                   <TextPrimary>{curForm.desc}</TextPrimary>
                </div>
-               <form className="grid grid-cols-2 gap-x-6 gap-y-7">
+               <form
+                  onSubmit={handleSubmit(submitHandler)}
+                  ref={formEl}
+                  className="grid grid-cols-2 gap-x-6 gap-y-7"
+               >
                   {curForm.formElements.map((element, idx) => (
-                     <RenderFormGroup
-                        key={element.id}
-                        element={element}
-                     />
+                     <React.Fragment key={element.id}>{RenderFormGroup(element)}</React.Fragment>
                   ))}
+                  {curForm.groupValidation && errors[curForm.groupName] && (
+                     <TextSmall className="text-danger">{curForm.groupErrorMessage}</TextSmall>
+                  )}
+                  <button
+                     ref={submitRef}
+                     type="submit"
+                     style={{ display: 'none' }}
+                  >
+                     Submit
+                  </button>
                </form>
             </>
          ) : (
-            <LastStepContent />
+            <LastStepContent
+               details={getValues()}
+               onSubmit={finalSubmitHandler}
+            />
          )}
       </div>
    );
